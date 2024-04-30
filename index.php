@@ -6,6 +6,9 @@
  * Site web en MVC et orienté objet pour la gestion des surnoms des profs de l'ETML
  */
 
+/* phpinfo();
+ die();
+*/
 include_once 'controller/Controller.php';
 include_once 'controller/IdeeController.php';
 
