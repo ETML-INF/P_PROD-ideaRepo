@@ -574,7 +574,6 @@ class IdeeController extends Controller {
 
     private function editAction()
     {
-        
         $ideeRepository = new IdeeRepository();
         $categories = $ideeRepository->getAllCategories();
         $priorities = $ideeRepository->getAllPriorities();
@@ -656,12 +655,13 @@ class IdeeController extends Controller {
 
 
             if($valid){
-                $ideeRepository->changeIdea($_GET["id"], $title, $description, $target, $tmp_name, $category, $priority, $state, $_SESSION["id"]);
+                $ideeRepository->changeIdea($_GET["id"], $title, $description, $target, $tmp_name, $category, $priority, $states, $_SESSION["id"]);
             }
             //Efface les variables contenant le mot de passe
             $_POST["password"] = null;
             $password = null;
-            
+            header("Location:?controller=Idee&action=list");
+
         }
 
         $view = file_get_contents('view/page/edit.php');
@@ -671,5 +671,6 @@ class IdeeController extends Controller {
         $content = ob_get_clean();
 
         return $content;
+        
     }
 }
