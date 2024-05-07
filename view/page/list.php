@@ -140,14 +140,14 @@ if(empty($_SESSION["login"])){
           if($valid)
           {
         ?>
-        <button class="btn btn-primary text-danger" style="background-color:#253F2E;" type="submit" value="<?=$idee['ide_id']?>" name="like">♥-<?=$idee["ide_like"]?></button>
+        <button class="btn btn-primary text-danger" style="background-color:#253F2E;" type="submit" value="<?=$idee['ide_id']?>" name="like">♥ <?=$idee["ide_like"]?></button>
         <?php
             $valid = false;
           }
           else
           {
         ?>
-        <button class="btn btn-primary" style="background-color:#253F2E;" type="submit" value="<?=$idee['ide_id']?>" name="like">♥-<?=$idee["ide_like"]?></button>
+        <button class="btn btn-primary" style="background-color:#253F2E;" type="submit" value="<?=$idee['ide_id']?>" name="like">♥ <?=$idee["ide_like"]?></button>
         <?php
             $valid = false;
           }
