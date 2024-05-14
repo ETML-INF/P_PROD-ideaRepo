@@ -71,7 +71,7 @@ CREATE TABLE `t_idea` (
   `ide_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ide_description` text NOT NULL,
   `ide_target` varchar(255) NOT NULL,
-  `ide_image` mediumblob,
+  `ide_image` varchar(255) NOT NULL,
   `ide_category_fk` int(11) NOT NULL,
   `ide_account_fk` int(11) NOT NULL,
   `ide_state_fk` int(11) NOT NULL DEFAULT '1'
