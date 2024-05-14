@@ -137,8 +137,10 @@ class IdeeController extends Controller {
                 $_SESSION["target"] = "le public cible doit faire au maximum 255 caractères";
                 $valid = false;
             }
-            if($_FILES['files']["error"] = 0){
+            if($_FILES['files']["error"] === 0){
                 if($file_type == "image/png" || $file_type == "image/jpeg"){
+                    $destination = "upload/images/" . date("YmdHis"). $_FILES["files"]["name"];
+                    $source = $_FILES["files"]["tmp_name"];
                 }else{
                     $_SESSION["image"] = var_dump($_FILES['files']); 
                     $valid = false;
@@ -197,7 +199,9 @@ class IdeeController extends Controller {
             
 
             if($valid){
-                $ideeRepository->addIdea($title,$description,$target,$tmp_name,$category,$priority,$_SESSION["id"]);
+                move_uploaded_file($source, $destination);
+                $ideeRepository->addIdea($title,$description,$target,$destination,$category,$priority,$_SESSION["id"]);
+
             }
             //Efface les variables contenant le mot de passe
             $_POST["password"] = null;

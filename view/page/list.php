@@ -80,7 +80,7 @@ if(empty($_SESSION["login"])){
       }
   ?>
   <div class="card m-3" style="max-width: 35rem;">
-    <img src=<?php echo "data:image/jpeg;base64,".base64_encode( $idee['ide_image'] );?> class="card-img-top" alt="image représentant le projet">
+    <img src="<?= $idee['ide_image']; ?>" class="card-img-top" alt="image représentant le projet" style="max-width: 50%; margin:auto;   ">
     <div class="card-body ">
       <h5 class="card-title"><?= $idee["ide_title"]?></h5>
       <p class="card-text">Description: <?= $idee["ide_description"]?></p>
