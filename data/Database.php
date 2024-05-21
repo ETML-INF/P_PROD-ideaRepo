@@ -126,13 +126,13 @@
             return $req;
         }
 
-        public function addIdea($title, $description, $target, $image, $category, $priority, $userId)
+        public function addIdea($title, $description, $target, $imagePath, $category, $priority, $userId)
         {
-            $req = $this->connector->prepare("INSERT INTO t_idea (ide_id, ide_title, ide_description, ide_target, ide_image, ide_category_fk, ide_priority_fk, ide_account_fk) VALUES (NULL, :title, :ideDescription, :ideTarget, LOAD_FILE(:ideImage), :category, :priority, :creator)");
+            $req = $this->connector->prepare("INSERT INTO t_idea (ide_id, ide_title, ide_description, ide_target, ide_image, ide_category_fk, ide_priority_fk, ide_account_fk) VALUES (NULL, :title, :ideDescription, :ideTarget, :ideImage, :category, :priority, :creator)");
             $req->bindValue(':title', $title, PDO::PARAM_STR);
             $req->bindValue(':ideDescription', $description, PDO::PARAM_STR);
             $req->bindValue(':ideTarget', $target, PDO::PARAM_STR);
-            $req->bindValue(':ideImage', $image, PDO::PARAM_STR);
+            $req->bindValue(':ideImage', $imagePath, PDO::PARAM_STR);
             $req->bindValue(':category', $category, PDO::PARAM_INT);
             $req->bindValue(':priority', $priority, PDO::PARAM_INT);
             $req->bindValue(':creator', $userId, PDO::PARAM_INT);
@@ -234,7 +234,7 @@
 
         public function changeIdea($idid, $title, $description, $target, $image, $category, $priority, $state, $userId)
         {
-            $req = $this->connector->prepare("UPDATE t_idea SET (ide_id, ide_title, ide_description, ide_target, ide_image, ide_category_fk, ide_priority_fk, ide_status, ide_account_fk) VALUES (NULL, :title, :ideDescription, :ideTarget, LOAD_FILE(:ideImage), :category, :priority, :sta, :creator) WHERE ide_id=:idid");
+            $req = $this->connector->prepare("UPDATE t_idea SET ide_title = :title, ide_description = :ideDescription, ide_target = :ideTarget, ide_image = LOAD_FILE(:ideImage), ide_category_fk = :category, ide_priority_fk = :priority, ide_state_fk = :sta, ide_account_fk = :creator WHERE ide_id = :idid");
             $req->bindValue(':title', $title, PDO::PARAM_STR);
             $req->bindValue(':ideDescription', $description, PDO::PARAM_STR);
             $req->bindValue(':ideTarget', $target, PDO::PARAM_STR);
@@ -243,8 +243,9 @@
             $req->bindValue(':priority', $priority, PDO::PARAM_INT);
             $req->bindValue(':sta', $state, PDO::PARAM_INT);
             $req->bindValue(':creator', $userId, PDO::PARAM_INT);
-            $req->bindValue(':idid', $userId, PDO::PARAM_INT);
+            $req->bindValue(':idid', $idid, PDO::PARAM_INT);
             
             $req->execute();
         }
+
     }
