@@ -10,10 +10,10 @@
          * @return void
          */
         public function __construct() {
-            $mdp = "root";
-            $user = "root";
-            $dbName= "repo";
-            $port = "6033";
+            $mdp = "Yj~83b86n";
+            $user = "repository-idea_user";
+            $dbName= "db_repository-idea";
+            $port = 3306;
             $this->connector = new PDO('mysql:host=localhost:' . $port . ';dbname=' .$dbName . ';charset=utf8', $user, $mdp);
         }
 
